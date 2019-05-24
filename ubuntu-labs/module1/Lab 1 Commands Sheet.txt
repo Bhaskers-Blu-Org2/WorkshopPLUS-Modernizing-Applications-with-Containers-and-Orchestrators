@@ -14,14 +14,13 @@ docker ps
 docker run --name mycontainer1 -d -p 8081:80 tutum/wordpress
 docker ps
 
-
 Exercise 2:
 docker ps
 docker stop <<CONTAINER-ID>>
 docker ps -a
 docker start <<CONTAINER-ID>>
 docker ps
-docker rm –f <<CONTAINER-ID>>
+docker rm -f <<CONTAINER-ID>>
 docker stop $(docker ps -aq)
 docker images
 docker rmi <<IMAGE ID>> -f
@@ -71,6 +70,30 @@ docker images
 cd ~/labs/module1/nginx
 docker build -t nginxsample:v1 .
 docker images
+
+Exercise 6:
+cd ~/labs/module1/sqlserver2017
+docker rm $(docker ps -aq) -f
+cat Dockerfile
+docker build -t mysqlserver .
+docker run -e ACCEPT_EULA=Y -e SA_PASSWORD=P@ssw0rd123! -d -p 1433:1433 --name mydb mysqlserver
+docker logs mydb -f
+docker exec -it mydb /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P P@ssw0rd123!
+SELECT name FROM master.dbo.sysdatabases
+Go
+USE LabData
+SELECT * FROM Users
+GO
+exit
+
+cd ~/labs/module1/aspnetcorewithsqlserver
+docker inspect mydb
+nano Startup.cs
+dotnet build  
+dotnet published -o published  
+docker build -t myaspcoreapp:2.2-withsql .  
+docker run -d -p 8082:80 myaspcoreapp:2.2-withsql
+docker rm $(docker ps -aq) -f
 
 
 

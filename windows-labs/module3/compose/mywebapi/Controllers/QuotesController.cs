@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -13,11 +13,9 @@ namespace mywebapi.Controllers
         [HttpGet]
         public IEnumerable<string> Get()
         {
-            return new string[] { "The two most important days in your life are the day you are born and the day you find out why. ~ Mark Twain", 
+            return new string[] { "The two most important days in your life are the day you are born and the day you find out why. ~ Mark Twain",
                                   "Eighty percent of success is showing up. ~ Woody Allen" ,
                                   "Believe you can and you’re halfway there. ~ Theodore Roosevelt"};
         }
-
-        
     }
 }

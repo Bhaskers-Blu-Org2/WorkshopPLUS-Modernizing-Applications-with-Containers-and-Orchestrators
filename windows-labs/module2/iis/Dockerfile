@@ -1,6 +1,6 @@
-FROM microsoft/windowsservercore
+FROM mcr.microsoft.com/windows/servercore:1809
 
-MAINTAINER Razi Rais
+LABEL owner="cloudarchitectureteam@contoso.com"
 
 RUN powershell -Command Add-WindowsFeature Web-Server
 

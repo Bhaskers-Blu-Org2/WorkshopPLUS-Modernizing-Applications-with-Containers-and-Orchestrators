@@ -1,9 +1,8 @@
 # Simple Dockerfile for NGINX
 
-
 FROM nginx:stable-alpine
 
-MAINTAINER Razi Rais 
+LABEL author="sampleauthor@contoso.com" 
 
 COPY index.html /usr/share/nginx/html/index.html
 

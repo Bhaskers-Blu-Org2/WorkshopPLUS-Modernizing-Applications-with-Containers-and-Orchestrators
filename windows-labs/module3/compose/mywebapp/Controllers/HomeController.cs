@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using System.Net.Http;
+using mywebapp.Models;
 
 namespace mywebapp.Controllers
 {
@@ -21,33 +23,24 @@ namespace mywebapp.Controllers
             return View();
         }
 
-        public IActionResult About()
+        public IActionResult Privacy()
         {
-            ViewData["Message"] = "Your application description page.";
-
             return View();
         }
 
-        public IActionResult Contact()
-        {
-            ViewData["Message"] = "Your contact page.";
-
-            return View();
-        }
-
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
-            return View();
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
         public async Task<IActionResult> Quotes()
         {
-           
+
             var response = await client.GetStringAsync("http://demowebapi:9000/api/quotes");
-            //var sessions = JsonConvert.DeserializeObject&amp;lt;List&amp;lt;Session&amp;gt;&amp;gt;(response);
-            ViewData["Message"] = response; //"Sessions";
-            
+            ViewData["Message"] = response; 
+
             return View();
-         }
+        }
     }
 }
