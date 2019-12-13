@@ -15,7 +15,7 @@
     <EntryPoint>
       <!-- Follow this link for more information about deploying Windows containers to Service Fabric: https://aka.ms/sfguestcontainers -->
       <ContainerHost>
-        <ImageName>microsoft/iis:nanoserver-sac2016</ImageName>
+        <ImageName>mcr.microsoft.com/windows/servercore/iis:windowsservercore-ltsc2019</ImageName>
       </ContainerHost>
     </EntryPoint>
     <!-- Pass environment variables to your container: -->
