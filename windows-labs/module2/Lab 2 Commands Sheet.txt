@@ -29,7 +29,7 @@ docker inspect <container id> | FINDSTR "IPAddress"
 
 cd C:\labs\module2\aspnetcore\
 cat .\Dockerfile
-docker build -t aspnetcoreapp:2.2 .
-docker run -d -p 8080:80 aspnetcoreapp:2.2
+docker build -t aspnetcoreapp:3.1 .
+docker run -d -p 8080:80 aspnetcoreapp:3.1
 docker inspect <container id> | FINDSTR "IPAddress"
 docker stop (docker ps -aq) ; docker rm (docker ps -aq)

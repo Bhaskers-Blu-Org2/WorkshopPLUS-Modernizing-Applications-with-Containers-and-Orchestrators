@@ -4,16 +4,19 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using System.Net.Http;
+using Microsoft.Extensions.Configuration;
 
 namespace mywebapp.Controllers
 {
     public class HomeController : Controller
     {
         HttpClient client;
+        private readonly IConfiguration _config;
 
-        public HomeController()
+        public HomeController(IConfiguration config)
         {
             client = new HttpClient();
+            _config = config;
         }
 
         public IActionResult Index()
@@ -42,8 +45,9 @@ namespace mywebapp.Controllers
 
         public async Task<IActionResult> Quotes()
         {
-           
-            var response = await client.GetStringAsync("http://demowebapi:9000/api/quotes");
+
+           var host = _config["ApiHost"];
+            var response = await client.GetStringAsync($"http://{host}/api/quotes");
             //var sessions = JsonConvert.DeserializeObject&amp;lt;List&amp;lt;Session&amp;gt;&amp;gt;(response);
             ViewData["Message"] = response; //"Sessions";
             
